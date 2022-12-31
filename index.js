@@ -49,11 +49,11 @@ app.post("/", (req, res) => {
   sn = req.body.sname;
   randomNumber = Math.floor(Math.random() * 100);
   if (randomNumber > 50 && randomNumber < 79) {
-    a = `${fn} ${sn} ( You are falling in love) = ${randomNumber} %`;
-  } else if (randomNumber > 50 && randomNumber < 79) {
-    a = `${fn} ${sn} ( True love is there ) = ${randomNumber} %`;
+    a = `${fn} +  ${sn} ( You are falling in love) = ${randomNumber} %`;
+  } else if (randomNumber < 100 && randomNumber > 78) {
+    a = `${fn} +  ${sn} ( True love is there ) = ${randomNumber} %`;
   } else {
-    a = `${fn} ${sn} (Fake love!!) = ${randomNumber} %`;
+    a = `${fn} +  ${sn} (Fake love!!) = ${randomNumber} %`;
   }
   res.render("result", { para: a });
 });
