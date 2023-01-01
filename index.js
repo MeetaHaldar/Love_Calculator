@@ -10,7 +10,6 @@ const app = express();
 app.use(express.static(path.join(__dirname + "/public")));
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
-
 const connectionString = process.env.MONGO_STRING;
 mongodb.connect(
   connectionString,
@@ -30,11 +29,8 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.render("index");
 });
-var randomNumber;
-var a;
-var b;
-var fn;
-var sn;
+var randomNumber, a, k, fn, sn;
+
 app.post("/", (req, res) => {
   db.collection("loverName").insertOne(
     { First_name: req.body.fname, Second_name: req.body.sname },
@@ -50,10 +46,14 @@ app.post("/", (req, res) => {
   randomNumber = Math.floor(Math.random() * 100);
   if (randomNumber > 50 && randomNumber < 79) {
     a = `${fn} +  ${sn} ( You are falling in love) = ${randomNumber} %`;
+    k =
+      "https://thumbs.gfycat.com/EllipticalSnoopyCrocodile-size_restricted.gif";
   } else if (randomNumber < 100 && randomNumber > 78) {
     a = `${fn} +  ${sn} ( True love is there ) = ${randomNumber} %`;
+    k = "https://media.tenor.com/-bc_hY52YP8AAAAM/true-love-kiss.gif";
   } else {
-    a = `${fn} +  ${sn} (Fake love!!) = ${randomNumber} %`;
+    a = `${fn} +  ${sn} (make some efforts!!) = ${randomNumber} %`;
+    k = "https://i.gifer.com/27tQ.gif";
   }
-  res.render("result", { para: a });
+  res.render("result", { para: a, gif: k });
 });
